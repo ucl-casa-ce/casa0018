@@ -42,7 +42,7 @@ TfLiteTensor* output = nullptr;
 
 
 // Create an area of memory to use for input, output, and intermediate arrays. 
-const int kTensorArenaSize = (2 * 1024);
+const int kTensorArenaSize = (8 * 1024);
 uint8_t tensor_arena[kTensorArenaSize];
 
 // This constant represents the range of x values our model was trained on,
