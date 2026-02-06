@@ -154,20 +154,11 @@ void loop() {
   float position = static_cast<float>(inference_count) /
                    static_cast<float>(kInferencesPerCycle);
   float x_val = position * kXrange;
-
-
-/*
- *  Step 2: convert that input value to be the same as the model type (quantized)
- */  
-  // Quantize the input from floating-point to integer 
-  int8_t x_quantized = x_val / input->params.scale + input->params.zero_point;
-  
-  // Place the quantized input in the model's input tensor
-  input->data.int8[0] = x_quantized;
+  input->data.f[0] = x_val;
 
  
 /*  
- *  Step 3: invoke the interpreter to work out an output given an input 
+ *  Step 2: invoke the interpreter to work out an output given an input 
  */
   // Run inference, and if an error: report it and break out of loop
   TfLiteStatus invoke_status = interpreter->Invoke();
@@ -181,22 +172,18 @@ void loop() {
 
 
 /* 
- *  Step 4: convert the output back into a number between -1 and 1
+ *  Step 3: get the output - a number between -1 and 1
  */
+
+  float y_val = output->data.f[0];
   
-  // Obtain the quantized output from model's output tensor
-  int8_t y_quantized = output->data.int8[0];
-
-  // Dequantize the output from integer to floating-point
-  float y_val = (y_quantized - output->params.zero_point) * output->params.scale;
-
 
 /*
- *  Step 5: map the output into a value between 0 and 255 to change LED brightness
+ *  Step 4: map the output into a value between 0 and 255 to change LED brightness
  */
   // Calculate the brightness of the LED such that y=-1 is fully off
   // and y=1 is fully on. The LED's brightness can range from 0-255.
-  int brightness = (int)(127.5f * (y_val + 1));
+  int brightness = (int)(127.5f * (y_val + 1.0f));
 
   // Need to make sure that the brightness is within the limits of PWM 0-255
   // Depending on model results y_val can be less than -1.0 and greater than 1.0 
@@ -207,7 +194,8 @@ void loop() {
   analogWrite(led, brightness);
 
   // Log the current brightness value for display in the Arduino plotter
-  TF_LITE_REPORT_ERROR(error_reporter, "%d\n", brightness);
+  //TF_LITE_REPORT_ERROR(error_reporter, "%d\n", brightness);
+  Serial.println(brightness);
 
   // Increment the inference_counter, and reset it if we have reached
   // the total number per cycle
