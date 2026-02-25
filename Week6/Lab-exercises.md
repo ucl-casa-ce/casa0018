@@ -3,6 +3,7 @@
 Use Plants and Mugs data set and Edge Impulse to perform image classification using:
  a) Regular CNN
  b) Transfer Learning
+ 
 Which performs better?
 
 The dataset can be found here:
