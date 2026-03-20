@@ -5,14 +5,11 @@ Name of author, link to github repo with project work in / link to Edge Impulse 
 ## Introduction
 - an overview of what the project does
 - your inspiration for making the project 
-- examples that it is based on. 
+- examples that it is based on.
+- what is the problem you are trying to solve?
 
 *Tip: probably ~200 words and images are good!*
 
-## Research Question
-What is the problem you are trying to solve
-
-*Tip: probably 1 or 2 sentences*
 
 ## Application Overview
 Thinking back to the various application diagrams you have seen through the module - how would you describe an overview of the building blocks of your project - how do they connect, what do the component parts include.
@@ -38,6 +35,11 @@ What experiments did you run to test your project? What parameters did you chang
 Synthesis the main results and observations you made from building the project. Did it work perfectly? Why not? What worked and what didn't? Why? What would you do next if you had more time?  
 
 *Tip: probably ~300 words and remember images and diagrams bring results to life!*
+
+## Conclusion
+Wrap it up, summarising key findings.
+
+*Tip: probably ~100 words*
 
 ## Bibliography
 *If you added any references then add them in here using this format:*
