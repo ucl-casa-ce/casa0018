@@ -1,3 +1,4 @@
+<img width="1206" height="652" alt="IMG_7064" src="https://github.com/user-attachments/assets/842abee4-a57d-4cfe-8624-d1b81be4289a" />
 # Report title goes here
 
 Name of author, link to github repo with project work in / link to Edge Impulse projects
